@@ -1,11 +1,10 @@
 package silapna
 
 import (
-	"bufio"
 	"fmt"
-	prompt "mahavanaranapna/prompt"
-	"os"
-	"strings"
+	"mahavanaranapna/help"
+	"mahavanaranapna/prompt"
+	"mahavanaranapna/utils"
 	"time"
 )
 
@@ -22,41 +21,25 @@ func Welcome() {
 }
 
 func Instrument() {
-	soundBackLn("Welcome! You can type:")
-	soundBackLn(prompt.ECHO)
-	soundBackLn(prompt.CEASE)
-	soundBackLn(prompt.VOID)
+
+	utils.SoundBackLn(prompt.HI)
 
 	for {
-		tune := readString(prompt.INSTRUMENT)
+		tune := utils.ReadString(prompt.ARANARA_FACE)
 		switch tune {
+		case prompt.HELP:
+			help.Help()
 		case prompt.CEASE:
 			goto cease
 		default:
-			soundBackLn("Oh... unknown tune...")
+			utils.SoundBackLn(prompt.UNKNOWN)
 		}
 	}
 
 cease:
-	soundBack(prompt.BYE)
+	utils.SoundBack(prompt.BYE)
 	for i := 0; i < 6; i++ {
 		time.Sleep(1 * time.Second)
-		soundBack(".")
+		utils.SoundBack(".")
 	}
-}
-
-func readString(hint string) (str string) {
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Print(hint)
-	str, _ = reader.ReadString('\n')
-	str = strings.TrimSuffix(str, prompt.READ_STRING_SUFFIX)
-	return
-}
-
-func soundBackLn(sound string) {
-	fmt.Println(sound)
-}
-
-func soundBack(sound string) {
-	fmt.Print(sound)
 }
