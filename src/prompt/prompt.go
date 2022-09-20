@@ -14,15 +14,7 @@ const (
 )
 
 const (
-	ECHO       = "echo"
-	ECHO_CEASE = "stop echo"
-)
-
-const (
-	HELP = "help"
-)
-
-const (
+	HELP  = "help"
 	CEASE = "cease"
 )
 

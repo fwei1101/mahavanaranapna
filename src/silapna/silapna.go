@@ -2,7 +2,8 @@ package silapna
 
 import (
 	"fmt"
-	"mahavanaranapna/help"
+	"mahavanaranapna/instruments/echo"
+	"mahavanaranapna/instruments/help"
 	"mahavanaranapna/prompt"
 	"mahavanaranapna/utils"
 	"time"
@@ -27,6 +28,8 @@ func Instrument() {
 	for {
 		tune := utils.ReadString(prompt.ARANARA_FACE)
 		switch tune {
+		case prompt.ECHO:
+			echo.Echo()
 		case prompt.HELP:
 			help.Help()
 		case prompt.CEASE:
